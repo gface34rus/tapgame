@@ -72,63 +72,108 @@
                </ScrollPane>
             </Tab>
             
-            <Tab text="Призы">
-               <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f3ff);">
-                  <Label text="Сезон призов" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
-                  
-                  <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;">
-                     <Label fx:id="seasonLabel" text="Сезон: 01.09.2025 - 30.09.2025" style="-fx-font-size: 14px; -fx-text-fill: #1e3c72;" />
-                     <Label text="Общее количество монет в сезоне:" style="-fx-font-size: 12px; -fx-text-fill: #666;" />
-                     <Label fx:id="totalCoinsLabel" text="1000" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffd700;" />
-                  </VBox>
-                  
-                  <Separator />
-                  
-                  <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;">
-                     <Label text="Купить билетик за призы" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
-                     <HBox spacing="10.0" alignment="CENTER_LEFT">
-                        <Label text="Стоимость:" style="-fx-font-size: 12px; -fx-text-fill: #666;" />
-                        <Label fx:id="ticketPriceLabel" text="50 монет" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #ffd700;" />
-                     </HBox>
-                     <Button fx:id="buyTicketButton" text="🎫 Купить билетик" style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
-                  </VBox>
-               </VBox>
-            </Tab>
-            
-            <Tab text="Качать персонажа">
-               <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f3ff);">
-                  <Label text="Прокачка персонажа" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
-                  
-                  <HBox spacing="20.0" alignment="CENTER">
-                     <VBox spacing="10.0" alignment="CENTER">
-                        <Label text="Ваш персонаж" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
-                        <Label fx:id="characterDisplay" text="🤖" style="-fx-font-size: 48px;" />
-                        <Label fx:id="characterLevel" text="Уровень: 1" style="-fx-font-size: 12px; -fx-text-fill: #666;" />
+            <Tab text="🎁 Призы">
+               <ScrollPane fitToWidth="true" style="-fx-background-color: #f8f9fa; -fx-border-color: transparent;">
+                  <VBox spacing="20.0" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+                     <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Label text="🎁 Сезон призов" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0088cc; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        <Label text="Участвуйте в розыгрыше призов!" style="-fx-font-size: 14px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
                      </VBox>
                      
-                     <VBox spacing="10.0">
-                        <Label text="Бустеры" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
+                     <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <HBox spacing="15.0" alignment="CENTER_LEFT">
+                           <Label text="📅" style="-fx-font-size: 24px;" />
+                           <VBox spacing="5.0">
+                              <Label text="Текущий сезон" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label fx:id="seasonLabel" text="01.09.2025 - 30.09.2025" style="-fx-font-size: 14px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </VBox>
+                        </HBox>
+                        <Separator style="-fx-background-color: #e0e0e0;" />
+                        <HBox spacing="15.0" alignment="CENTER_LEFT">
+                           <Label text="💰" style="-fx-font-size: 24px;" />
+                           <VBox spacing="5.0">
+                              <Label text="Общий призовой фонд" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label fx:id="totalCoinsLabel" text="1000 монет" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ffd700; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </VBox>
+                        </HBox>
+                     </VBox>
+                     
+                     <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <HBox spacing="15.0" alignment="CENTER_LEFT">
+                           <Label text="🎫" style="-fx-font-size: 24px;" />
+                           <VBox spacing="5.0">
+                              <Label text="Купить билетик" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label text="Участвуйте в розыгрыше призов" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </VBox>
+                        </HBox>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-padding: 10;">
+                           <Label text="Стоимость:" style="-fx-font-size: 14px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           <Label fx:id="ticketPriceLabel" text="50 монет" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffd700; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        </HBox>
+                        <Button fx:id="buyTicketButton" text="🎫 Купить билетик" style="-fx-background-color: #0088cc; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 15 30; -fx-background-radius: 25; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                     </VBox>
+                  </VBox>
+               </ScrollPane>
+            </Tab>
+            
+            <Tab text="⚡ Прокачка">
+               <ScrollPane fitToWidth="true" style="-fx-background-color: #f8f9fa; -fx-border-color: transparent;">
+                  <VBox spacing="20.0" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+                     <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Label text="⚡ Прокачка персонажа" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0088cc; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        <Label text="Улучшайте характеристики и становитесь сильнее!" style="-fx-font-size: 14px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                     </VBox>
+                     
+                     <VBox spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 25; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Label text="🤖 Ваш персонаж" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        <HBox spacing="20.0" alignment="CENTER">
+                           <VBox spacing="10.0" alignment="CENTER">
+                              <Label fx:id="characterDisplay" text="🤖" style="-fx-font-size: 64px;" />
+                              <Label fx:id="characterLevel" text="Уровень: 1" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0088cc; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </VBox>
+                           <VBox spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-padding: 15;">
+                              <Label text="📊 Статистика" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label text="• Скорость квестов: +0%" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label text="• Награда за квесты: +0%" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </VBox>
+                        </HBox>
+                     </VBox>
+                     
+                     <VBox spacing="15.0">
+                        <Label text="🔧 Бустеры" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
                         
-                        <VBox spacing="8.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-                           <HBox spacing="10.0" alignment="CENTER_LEFT">
-                              <Label text="⚡ Скорость квестов" style="-fx-font-size: 12px;" />
-                              <Label fx:id="speedLevel" text="Ур. 1" style="-fx-font-size: 10px; -fx-text-fill: #666;" />
-                              <Button fx:id="upgradeSpeedButton" text="+1" style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 5 10;" />
+                        <VBox fx:id="speedUpgradeContainer" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label text="⚡" style="-fx-font-size: 24px;" />
+                              <VBox spacing="5.0">
+                                 <Label text="Скорость квестов" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                                 <Label text="Выполняйте квесты быстрее" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              </VBox>
                            </HBox>
-                           <Label fx:id="speedCost" text="Стоимость: 25 монет" style="-fx-font-size: 10px; -fx-text-fill: #666;" />
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label fx:id="speedLevel" text="Уровень 1" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #0088cc; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label fx:id="speedCost" text="Стоимость: 25 монет" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </HBox>
+                           <Button fx:id="upgradeSpeedButton" text="⚡ Улучшить" style="-fx-background-color: #0088cc; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 25; -fx-background-radius: 25; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
                         </VBox>
                         
-                        <VBox spacing="8.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8;">
-                           <HBox spacing="10.0" alignment="CENTER_LEFT">
-                              <Label text="💰 Награда за квесты" style="-fx-font-size: 12px;" />
-                              <Label fx:id="rewardLevel" text="Ур. 1" style="-fx-font-size: 10px; -fx-text-fill: #666;" />
-                              <Button fx:id="upgradeRewardButton" text="+1" style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-font-size: 10px; -fx-padding: 5 10;" />
+                        <VBox fx:id="rewardUpgradeContainer" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label text="💰" style="-fx-font-size: 24px;" />
+                              <VBox spacing="5.0">
+                                 <Label text="Награда за квесты" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                                 <Label text="Получайте больше монет за квесты" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              </VBox>
                            </HBox>
-                           <Label fx:id="rewardCost" text="Стоимость: 30 монет" style="-fx-font-size: 10px; -fx-text-fill: #666;" />
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label fx:id="rewardLevel" text="Уровень 1" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #0088cc; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              <Label fx:id="rewardCost" text="Стоимость: 30 монет" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                           </HBox>
+                           <Button fx:id="upgradeRewardButton" text="💰 Улучшить" style="-fx-background-color: #0088cc; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 25; -fx-background-radius: 25; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
                         </VBox>
                      </VBox>
-                  </HBox>
-               </VBox>
+                  </VBox>
+               </ScrollPane>
             </Tab>
          </tabs>
       </TabPane>

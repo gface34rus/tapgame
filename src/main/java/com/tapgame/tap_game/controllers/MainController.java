@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import com.tapgame.tap_game.models.GameState;
 
 import java.net.URL;
@@ -42,6 +43,14 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     // === Элементы интерфейса для отображения информации ===
+    
+    /** Метка для отображения статуса пользователя */
+    @FXML
+    private Label userStatusLabel;
+    
+    /** Метка для отображения монет в шапке */
+    @FXML
+    private Label coinsDisplayLabel;
     
     /** Метка для отображения текущего количества монет игрока */
     @FXML
@@ -97,6 +106,18 @@ public class MainController implements Initializable {
     
     // === Кнопки квестов ===
     
+    /** Контейнер для квеста Telegram */
+    @FXML
+    private VBox questTelegramContainer;
+    
+    /** Контейнер для квеста Дзен */
+    @FXML
+    private VBox questDzenContainer;
+    
+    /** Контейнер для квеста портала */
+    @FXML
+    private VBox questPortalContainer;
+    
     /** Кнопка для выполнения квеста "Подписка на Telegram канал" */
     @FXML
     private Button questTelegram;
@@ -108,6 +129,16 @@ public class MainController implements Initializable {
     /** Кнопка для выполнения квеста "Участие в корпоративном портале" */
     @FXML
     private Button questPortal;
+    
+    // === Контейнеры для улучшений ===
+    
+    /** Контейнер для улучшения скорости */
+    @FXML
+    private VBox speedUpgradeContainer;
+    
+    /** Контейнер для улучшения награды */
+    @FXML
+    private VBox rewardUpgradeContainer;
 
     /** Объект, содержащий игровую логику и состояние */
     private GameState gameState;
@@ -250,13 +281,18 @@ public class MainController implements Initializable {
      * @see #updateButtonStates()
      */
     private void updateUI() {
-        // Обновляем монеты
-        coinsLabel.setText(String.valueOf(gameState.getCoins()));
+        // Обновляем монеты в шапке
+        coinsDisplayLabel.setText("💰 " + gameState.getCoins() + " монет");
+        
+        // Обновляем монеты (если есть старое поле)
+        if (coinsLabel != null) {
+            coinsLabel.setText(String.valueOf(gameState.getCoins()));
+        }
         
         // Обновляем информацию о персонаже
         characterLevel.setText("Уровень: " + gameState.getCharacterLevel());
-        speedLevel.setText("Ур. " + gameState.getSpeedLevel());
-        rewardLevel.setText("Ур. " + gameState.getRewardLevel());
+        speedLevel.setText("Уровень " + gameState.getSpeedLevel());
+        rewardLevel.setText("Уровень " + gameState.getRewardLevel());
         
         // Обновляем стоимость улучшений
         speedCost.setText("Стоимость: " + gameState.getSpeedUpgradeCost() + " монет");
@@ -264,6 +300,9 @@ public class MainController implements Initializable {
         
         // Обновляем состояние кнопок
         updateButtonStates();
+        
+        // Обновляем визуальное состояние квестов
+        updateQuestVisualStates();
     }
 
     /**
@@ -289,6 +328,34 @@ public class MainController implements Initializable {
         // Обновляем состояние кнопок улучшений
         upgradeSpeedButton.setDisable(gameState.getCoins() < gameState.getSpeedUpgradeCost());
         upgradeRewardButton.setDisable(gameState.getCoins() < gameState.getRewardUpgradeCost());
+    }
+
+    /**
+     * Обновление визуального состояния квестов.
+     * 
+     * <p>Этот метод изменяет внешний вид контейнеров квестов
+     * в зависимости от их статуса выполнения.
+     */
+    private void updateQuestVisualStates() {
+        updateQuestContainer(questTelegramContainer, gameState.isQuestCompleted("telegram"));
+        updateQuestContainer(questDzenContainer, gameState.isQuestCompleted("dzen"));
+        updateQuestContainer(questPortalContainer, gameState.isQuestCompleted("portal"));
+    }
+    
+    /**
+     * Обновление визуального состояния контейнера квеста.
+     * 
+     * @param container контейнер квеста
+     * @param completed выполнен ли квест
+     */
+    private void updateQuestContainer(VBox container, boolean completed) {
+        if (container != null) {
+            if (completed) {
+                container.setStyle("-fx-background-color: #e8f5e8; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
+            } else {
+                container.setStyle("-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
+            }
+        }
     }
 
     /**
