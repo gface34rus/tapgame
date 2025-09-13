@@ -4,35 +4,72 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tapgame.tap_game.controllers.MainController">
    <top>
-      <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298); -fx-padding: 20;">
-         <Label text="Тапалка Алабуга" textFill="WHITE" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-         <Label text="Добро пожаловать в игру!" textFill="WHITE" style="-fx-font-size: 14px;" />
+      <VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #0088cc; -fx-padding: 25 20 20 20; -fx-background-radius: 0 0 20 20;">
+         <HBox alignment="CENTER" spacing="15.0">
+            <Circle radius="25" fill="#ffffff" />
+            <VBox alignment="CENTER_LEFT" spacing="5.0">
+               <Label text="Тапалка Алабуга" textFill="WHITE" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+               <Label text="Telegram App Game" textFill="#e3f2fd" style="-fx-font-size: 14px; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+            </VBox>
+         </HBox>
+         <HBox alignment="CENTER" spacing="20.0">
+            <Label fx:id="userStatusLabel" text="👤 Гость" textFill="WHITE" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <Label fx:id="coinsDisplayLabel" text="💰 0 монет" textFill="#ffd700" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255,255,255,0.2); -fx-background-radius: 15; -fx-padding: 8 15;" />
+         </HBox>
       </VBox>
    </top>
    
    <center>
       <TabPane tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f3ff);">
          <tabs>
-            <Tab text="Квесты">
-               <VBox spacing="15.0" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, #f0f8ff, #e6f3ff);">
-                  <Label text="Выполняйте квесты и получайте монеты!" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
-                  
-                  <VBox spacing="10.0">
-                     <Button fx:id="questTelegram" text="📱 Подписаться на Telegram канал Алабуга" style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
-                     <Button fx:id="questDzen" text="📰 Подписаться на Яндекс.Дзен" style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
-                     <Button fx:id="questPortal" text="🏢 Быть участником корпоративного портала" style="-fx-background-color: #2a5298; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;" />
+            <Tab text="🎯 Квесты">
+               <ScrollPane fitToWidth="true" style="-fx-background-color: #f8f9fa; -fx-border-color: transparent;">
+                  <VBox spacing="20.0" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+                     <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                        <Label text="🎯 Ежедневные квесты" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0088cc; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        <Label text="Выполняйте задания и получайте монеты!" style="-fx-font-size: 14px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                     </VBox>
+                     
+                     <VBox spacing="15.0">
+                        <VBox fx:id="questTelegramContainer" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label text="📱" style="-fx-font-size: 24px;" />
+                              <VBox spacing="5.0">
+                                 <Label text="Подписаться на Telegram канал" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                                 <Label text="Получите 10 монет за подписку" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              </VBox>
+                           </HBox>
+                           <Button fx:id="questTelegram" text="Выполнить" style="-fx-background-color: #0088cc; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 25; -fx-background-radius: 25; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        </VBox>
+                        
+                        <VBox fx:id="questDzenContainer" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label text="📰" style="-fx-font-size: 24px;" />
+                              <VBox spacing="5.0">
+                                 <Label text="Подписаться на Яндекс.Дзен" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                                 <Label text="Получите 10 монет за подписку" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              </VBox>
+                           </HBox>
+                           <Button fx:id="questDzen" text="Выполнить" style="-fx-background-color: #0088cc; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 25; -fx-background-radius: 25; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        </VBox>
+                        
+                        <VBox fx:id="questPortalContainer" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+                           <HBox spacing="15.0" alignment="CENTER_LEFT">
+                              <Label text="🏢" style="-fx-font-size: 24px;" />
+                              <VBox spacing="5.0">
+                                 <Label text="Участие в корпоративном портале" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                                 <Label text="Получите 10 монет за участие" style="-fx-font-size: 12px; -fx-text-fill: #666; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                              </VBox>
+                           </HBox>
+                           <Button fx:id="questPortal" text="Выполнить" style="-fx-background-color: #0088cc; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 12 25; -fx-background-radius: 25; -fx-font-family: 'Segoe UI', Arial, sans-serif;" />
+                        </VBox>
+                     </VBox>
                   </VBox>
-                  
-                  <Separator />
-                  
-                  <HBox spacing="10.0" alignment="CENTER_LEFT">
-                     <Label text="Монеты:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #1e3c72;" />
-                     <Label fx:id="coinsLabel" text="0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffd700;" />
-                  </HBox>
-               </VBox>
+               </ScrollPane>
             </Tab>
             
             <Tab text="Призы">

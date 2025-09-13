@@ -88,11 +88,10 @@
                     <charset>UTF-8</charset>
                     <docencoding>UTF-8</docencoding>
                     <doclint>none</doclint>
-                    <additionalJOption>-Xdoclint:none</additionalJOption>
+                    <additionalJOption>-Xdoclint:none -encoding UTF-8 -charset UTF-8 -docencoding UTF-8</additionalJOption>
                     <show>private</show>
                     <nohelp>true</nohelp>
                     <header>Тапалка Алабуга - JavaDoc</header>
-                    <footer>Telegram App игра с квестами, призами и прокачкой персонажа</footer>
                     <bottom>Copyright © 2025 Алабуга. Все права защищены.</bottom>
                 </configuration>
                 <executions>
