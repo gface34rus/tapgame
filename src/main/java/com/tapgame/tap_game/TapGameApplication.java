@@ -1,13 +1,25 @@
 package com.tapgame.tap_game;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-@SpringBootApplication
-public class TapGameApplication {
+public class TapGameApplication extends Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TapGameApplication.class, args);
-	}
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
+        primaryStage.setTitle("Тапалка Алабуга");
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(600);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
