@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<AnchorPane fx:id="mainPane" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.tapgame.tap_game.controllers.GooseGameController"
+            style="-fx-background-color: #f0f8ff; -fx-padding: 20;">
+
+    <VBox spacing="20" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20">
+        <!-- Статистика -->
+        <HBox spacing="20" alignment="CENTER">
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Монеты:" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label fx:id="coinsLabel" text="0 монет" style="-fx-font-size: 16px;"/>
+            </VBox>
+
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Монет/клик:" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label fx:id="cpcLabel" text="1 монета" style="-fx-font-size: 16px;"/>
+            </VBox>
+
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Монет/сек:" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label fx:id="cpsLabel" text="0 монет/сек" style="-fx-font-size: 16px;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Кнопка гуся -->
+        <Button fx:id="gooseButton"
+                style="-fx-background-color: transparent; -fx-padding: 0;"
+                onAction="#onGooseClick">
+            <graphic>
+                <ImageView fitWidth="200" fitHeight="200" preserveRatio="true">
+                    <image>
+                        <Image url="@/images/goose.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+
+        <!-- Улучшения -->
+        <VBox spacing="10" style="-fx-background-color: #e6f3ff; -fx-padding: 15; -fx-background-radius: 10;">
+            <Label text="Улучшения" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #0066cc;"/>
+
+            <Button fx:id="upgradeClickButton"
+                    onAction="#onUpgradeClick"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;"
+                    maxWidth="Infinity">
+                Улучшить клик
+            </Button>
+
+            <Button fx:id="upgradeAutoClickerButton"
+                    onAction="#onUpgradeAutoClicker"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10 20;"
+                    maxWidth="Infinity">
+                Купить автокликер
+            </Button>
+        </VBox>
+    </VBox>
+</AnchorPane>
