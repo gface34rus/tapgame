@@ -146,4 +146,16 @@ public class GooseGameController {
                 )
         ).play();
     }
+
+    @FXML
+    private void onGooseClick(javafx.event.ActionEvent event) {
+        // Получаем количество заработанных монет
+        long earned = gameState.tapGoose();
+
+        // Показываем анимацию получения монет
+        showEarnedCoins(earned);
+
+        // Обновляем интерфейс
+        updateUI();
+    }
 }

@@ -61,12 +61,11 @@ public class TapGameApplication extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
-        primaryStage.setTitle("Тапалка Алабуга");
-        primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.setMinWidth(800);
-        primaryStage.setMinHeight(600);
-        primaryStage.setResizable(false);
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/goose_game.fxml"));
+        primaryStage.setTitle("Гусь-Тапалка");
+        primaryStage.setScene(new Scene(root, 600, 800));
+        primaryStage.setMinWidth(600);
+        primaryStage.setMinHeight(800);
         primaryStage.show();
     }
 
