@@ -12,28 +12,69 @@ import javafx.scene.layout.AnchorPane;
 import java.text.NumberFormat;
 
 /**
- * Контроллер для игры "Гусь-Тапалка"
+ * Контроллер для игры "Гусь-Тапалка".
+ * 
+ * <p>Управляет логикой взаимодействия пользователя с игровым интерфейсом,
+ * обновляет состояние игры и отображает актуальную информацию.</p>
+ * 
+ * <p>Основные функции:
+ * <ul>
+ *   <li>Обработка нажатий на гуся</li>
+ *   <li>Управление улучшениями</li>
+ *   <li>Обновление игрового состояния</li>
+ *   <li>Отображение статистики</li>
+ * </ul>
+ * 
+ * @see GooseGameState
  */
 public class GooseGameController {
+    /** Текущее состояние игры */
     private GooseGameState gameState;
+    
+    /** Время последнего обновления игры (в миллисекундах) */
     private long lastUpdateTime;
+    
+    /** Форматтер для отображения чисел */
     private final NumberFormat numberFormat = NumberFormat.getInstance();
 
+    /** Метка для отображения количества монет */
     @FXML
     private Label coinsLabel;
+    
+    /** Метка для отображения количества монет в секунду */
     @FXML
-    private Label cpsLabel; // Coins per second
+    private Label cpsLabel;
+    
+    /** Метка для отображения количества монет за клик */
     @FXML
-    private Label cpcLabel; // Coins per click
+    private Label cpcLabel;
+    
+    /** Кнопка гуся, по которой нужно кликать */
     @FXML
     private Button gooseButton;
+    
+    /** Кнопка улучшения силы клика */
     @FXML
     private Button upgradeClickButton;
+    
+    /** Кнопка улучшения автокликера */
     @FXML
     private Button upgradeAutoClickerButton;
+    
+    /** Главная панель интерфейса */
     @FXML
     private AnchorPane mainPane;
 
+    /**
+     * Инициализация контроллера.
+     * 
+     * <p>Вызывается автоматически при загрузке FXML. Выполняет:
+     * <ul>
+     *   <li>Инициализацию состояния игры</li>
+     *   <li>Настройку форматирования чисел</li>
+     *   <li>Запуск игрового цикла</li>
+     * </ul>
+     */
     @FXML
     public void initialize() {
         gameState = new GooseGameState();
@@ -55,6 +96,11 @@ public class GooseGameController {
         updateUI();
     }
 
+    /**
+     * Настройка кнопки гуся.
+     * 
+     * <p>Загружает изображение гуся и устанавливает обработчик клика.</p>
+     */
     private void setupGooseButton() {
         // Загрузка изображения гуся
         try {
@@ -77,6 +123,12 @@ public class GooseGameController {
         });
     }
 
+    /**
+     * Обновляет игровое состояние.
+     * 
+     * <p>Вызывается в игровом цикле. Вычисляет прошедшее время
+     * и начисляет пассивный доход.</p>
+     */
     private void updateGame() {
         long currentTime = System.currentTimeMillis();
         long deltaTime = currentTime - lastUpdateTime;
@@ -88,6 +140,12 @@ public class GooseGameController {
         }
     }
 
+    /**
+     * Обновляет отображение игрового состояния.
+     * 
+     * <p>Обновляет все элементы интерфейса в соответствии
+     * с текущим состоянием игры.</p>
+     */
     private void updateUI() {
         coinsLabel.setText(numberFormat.format(gameState.getCoins()) + " монет");
         cpsLabel.setText(numberFormat.format(gameState.getCoinsPerSecond()) + " монет/сек");
@@ -98,6 +156,12 @@ public class GooseGameController {
         upgradeAutoClickerButton.setText("Купить автокликер (" + numberFormat.format(gameState.getAutoClickerUpgradeCost()) + " монет)");
     }
 
+    /**
+     * Обработчик улучшения силы клика.
+     * 
+     * <p>Увеличивает количество монет, получаемых за клик.
+     * Обновляет отображение стоимости улучшения.</p>
+     */
     @FXML
     private void onUpgradeClick() {
         if (gameState.upgradeClickPower()) {
@@ -107,6 +171,12 @@ public class GooseGameController {
         }
     }
 
+    /**
+     * Обработчик улучшения автокликера.
+     * 
+     * <p>Увеличивает пассивный доход в секунду.
+     * Обновляет отображение стоимости улучшения.</p>
+     */
     @FXML
     private void onUpgradeAutoClicker() {
         if (gameState.upgradeAutoClicker()) {
@@ -116,6 +186,13 @@ public class GooseGameController {
         }
     }
 
+    /**
+     * Показывает анимацию получения монет.
+     * 
+     * <p>Создает всплывающую метку с количеством полученных монет.</p>
+     * 
+     * @param amount количество полученных монет
+     */
     private void showEarnedCoins(long amount) {
         Label popup = new Label("+" + amount);
         popup.setStyle("-fx-text-fill: gold; -fx-font-weight: bold; -fx-font-size: 16px;");
@@ -135,6 +212,13 @@ public class GooseGameController {
         ).play();
     }
 
+    /**
+     * Показывает эффект улучшения.
+     * 
+     * <p>Изменяет цвет кнопки на зеленый на 0.5 секунд.</p>
+     * 
+     * @param button кнопка, для которой показываем эффект
+     */
     private void showUpgradeEffect(Button button) {
         String originalText = button.getText();
         button.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
@@ -147,6 +231,12 @@ public class GooseGameController {
         ).play();
     }
 
+    /**
+     * Обработчик нажатия на гуся.
+     * 
+     * <p>Увеличивает количество монет в зависимости от силы клика.
+     * Показывает анимацию получения монет.</p>
+     */
     @FXML
     private void onGooseClick(javafx.event.ActionEvent event) {
         // Получаем количество заработанных монет
